@@ -4,13 +4,13 @@ public class Address {
     private String city;
     private String street;
     private String houseAndFlatNumber;
-    private String Zipcode;
+    private String zipCode;
 
-    public Address (String street, String houseAndFlatNumber, String Zipcode, String city)
+    public Address (String street, String houseAndFlatNumber,String zipCode,  String city)
     {
         this.street = street;
         this.houseAndFlatNumber = houseAndFlatNumber;
-        this.Zipcode = Zipcode;
+        this.zipCode = zipCode;
         this.city = city;
     }
 
@@ -26,13 +26,16 @@ public class Address {
         return houseAndFlatNumber;
     }
 
-    public String getZipcode() {
-        return Zipcode;
+    public String getZipCode() {
+        if (zipCode.length()!=5)
+            return "Błędny kod pocztowy";
+
+        return zipCode;
     }
 
     @Override
     public String toString() {
-        return "Adres pracownika: "+ street+" " +houseAndFlatNumber+ ", "+Zipcode+ " "+city;
+        return ",adres pracownika: "+ street+" " +houseAndFlatNumber+ ", "+getZipCode()+ " "+city;
     }
 }
 
