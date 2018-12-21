@@ -14,7 +14,6 @@ public class Person
         this.pesel = pesel;
         this.address = address;
     }
-
     public String getName() {
         return name;
     }
@@ -24,7 +23,6 @@ public class Person
     }
 
     public String getPesel() {
-
         if (pesel.length()!=11) {
             return "Błąd: Podano nieprawidłowy pesel";
         }

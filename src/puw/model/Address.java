@@ -29,7 +29,6 @@ public class Address {
     public String getZipCode() {
         if (zipCode.length()!=5)
             return "Błędny kod pocztowy";
-
         return zipCode;
     }
 
