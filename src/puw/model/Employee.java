@@ -47,8 +47,5 @@ public class Employee extends Person {
     }
     public enum Proffession {Manager, JuniorDeveloper, SeniorDeveloper, Analyst, SoftwareArchitect, Accountant}
 
-    public static void main(String[] args) {
-        Employee employee = new Employee("Andrzej", "Chujmietki", "45896578451", new Address("Kaprysowa", "3/75", "20-843", "Lublin"), 3000, 2, Proffession.JuniorDeveloper);
-        System.out.println(employee);
-    }
+
 }
