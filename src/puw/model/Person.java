@@ -24,7 +24,7 @@ public class Person
 
     public String getPesel() {
         if (pesel.length()!=11) {
-            return "Błąd: Podano nieprawidłowy pesel";
+            return "Podano nieprawidłowy pesel";
         }
         return pesel;
     }
