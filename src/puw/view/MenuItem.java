@@ -1,9 +1,15 @@
-package puw.controller;
+package puw.view;
+
+import puw.controller.Action;
 
 public class MenuItem {
     private Action action;
     private MenuItem subMenu;
     private String name;
+
+    public MenuItem(String name) {
+        this.name = name;
+    }
 
     public MenuItem(Action action, MenuItem subMenu, String name) {
         this.action = action;
@@ -12,10 +18,7 @@ public class MenuItem {
     }
 
     public boolean hasSubMenu() {
-        if (subMenu != null)
-            return true;
-        else
-            return false;
+        return subMenu != null;
     }
 
     public String getName() {
