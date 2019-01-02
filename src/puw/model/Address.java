@@ -27,13 +27,13 @@ public class Address {
     }
 
     public String getZipCode() {
-        if (zipCode.length()!=5)
+        if (zipCode.length()!=6)
             return "Błędny kod pocztowy";
         return zipCode;
     }
 
-    @Override
-    public String toString() {
+
+    public String getAddress() {
         return ",adres pracownika: "+ street+" " +houseAndFlatNumber+ ", "+getZipCode()+ " "+city;
     }
 }

@@ -29,9 +29,9 @@ public class Person
         return pesel;
     }
 
-    @Override
-    public String toString() {
-        return name + " "+surname+", Pesel: "+getPesel()+" "+address;
+    public String getAddress() {
+        return address.getAddress();
     }
+
 }
 
