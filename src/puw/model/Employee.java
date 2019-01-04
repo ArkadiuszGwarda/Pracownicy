@@ -7,8 +7,6 @@ public class Employee extends Person {
     private ArrayList <String> noteList;
     private Proffession proffession;
 
-
-
     public Employee(String name, String surname, String pesel, Address address, double salary, int experienceInYears, Proffession proffession ) {
         super(name, surname, pesel, address);
         this.salary = salary;
@@ -16,7 +14,6 @@ public class Employee extends Person {
         this.proffession = proffession;
         noteList = new ArrayList<>();
     }
-    
     public void addNote (String note)
     {
         noteList.add(note);
@@ -30,10 +27,6 @@ public class Employee extends Person {
         salary+=bonus;
     }
 
-    public Proffession getProffession() {
-        return proffession;
-    }
-
     @Override
     public String toString() { return getName()+ " "+ getSurname()+ ", Pesel: "+getPesel()+ getAddress()+" ,pensja: "+ salary+ " ,doświadczenie (w latach): "+experienceInYears+ " ,specjalizacja: "+proffession;
     }
@@ -45,7 +38,8 @@ public class Employee extends Person {
     public int getExperienceInYears() {
         return experienceInYears;
     }
-    public enum Proffession {Manager, JuniorDeveloper, SeniorDeveloper, Analyst, SoftwareArchitect, Accountant}
 
-
+    public Proffession getProffession() {
+        return proffession;
+    }
 }

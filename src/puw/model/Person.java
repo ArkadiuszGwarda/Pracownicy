@@ -14,6 +14,7 @@ public class Person
         this.pesel = pesel;
         this.address = address;
     }
+
     public String getName() {
         return name;
     }
