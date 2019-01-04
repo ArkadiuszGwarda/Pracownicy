@@ -1,6 +1,9 @@
 package puw.model;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
+    private static final long serialVersionUID = 0;
     private String city;
     private String street;
     private String houseAndFlatNumber;
@@ -13,7 +16,13 @@ public class Address {
         this.zipCode = zipCode;
         this.city = city;
     }
-
+    public Address ()
+    {
+        this.street = "unknown";
+        this.houseAndFlatNumber = "unknown";
+        this.zipCode = "unknown";
+        this.city = "unknown";
+    }
     public String getCity() {
         return city;
     }

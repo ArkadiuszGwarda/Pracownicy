@@ -11,6 +11,11 @@ public class Developer extends Employee {
         super(name, surname, pesel, address, salary, experienceInYears, proffession);
         skills = new HashMap<>();
     }
+    public Developer()
+    {
+        super();
+        skills = new HashMap<>();
+    }
     @Override
     public String toString() {
         return "Deweloper: " + getName() + " " + getSurname() +

@@ -1,7 +1,10 @@
 package puw.model;
 
-public class Person
+import java.io.Serializable;
+
+public class Person implements Serializable
 {
+    private static final long serialVersionUID = 0;
     private String name;
     private String surname;
     private String pesel;

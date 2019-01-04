@@ -14,6 +14,14 @@ public class Employee extends Person {
         this.proffession = proffession;
         noteList = new ArrayList<>();
     }
+    public Employee ()
+    {
+        super();
+        this.salary = 0;
+        this.experienceInYears = 0;
+        this.proffession = null;
+        noteList = new ArrayList<>();
+    }
     public void addNote (String note)
     {
         noteList.add(note);
