@@ -1,5 +1,6 @@
 package puw.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Business {
@@ -8,13 +9,11 @@ public class Business {
     private double balance;
     private List<Employee> employees;
 
-    public Business() {
-    }
-
     public Business(String name, String nip, double balance) {
         this.name = name;
         this.nip = nip;
         this.balance = balance;
+        employees = new ArrayList<>();
     }
 
     public String getName() {
