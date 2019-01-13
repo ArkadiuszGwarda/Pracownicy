@@ -1,9 +1,9 @@
 package puw.model;
 
 import java.io.Serializable;
+import java.util.Scanner;
 
-public class Person implements Serializable
-{
+public class Person implements Serializable, ConsoleReader {
     private static final long serialVersionUID = 0;
     private String name;
     private String surname;
@@ -42,6 +42,28 @@ public class Person implements Serializable
 
     public Address getAddress() {
         return address;
+    }
+
+    @Override
+    public String toString() {
+        return new StringBuilder()
+                .append("Imię: ").append(name).append('\n')
+                .append("Nazwisko: ").append(surname).append('\n')
+                .append("Pesel: ").append(pesel).append('\n')
+                .append(address.toString())
+                .toString();
+    }
+
+    @Override
+    public void readFromConsole(Scanner scanner) {
+        System.out.println("Wprowadź dane osobowe:");
+        System.out.print("Imię: ");
+        name = scanner.nextLine();
+        System.out.print("Nazwisko: ");
+        surname = scanner.nextLine();
+        System.out.print("Pesel: ");
+        pesel = scanner.nextLine();
+        address.readFromConsole(scanner);
     }
 }
 

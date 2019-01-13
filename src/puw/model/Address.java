@@ -43,8 +43,9 @@ public class Address implements Serializable, ConsoleReader {
     }
 
 
-    public String getAddress() {
-        return ",adres pracownika: "+ street+" " +houseAndFlatNumber+ ", "+getZipCode()+ " "+city;
+    @Override
+    public String toString() {
+        return "Adres: " + street + " " + houseAndFlatNumber + " " + zipCode + " " + city;
     }
 
     @Override
