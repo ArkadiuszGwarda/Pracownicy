@@ -1,5 +1,6 @@
 package puw.controller;
 
+import puw.model.Business;
 import puw.view.Menu;
 import puw.view.MenuItem;
 
@@ -15,24 +16,22 @@ public class Controller {
     private Menu vatsMenu;
     private Scanner scanner;
     private boolean isTheEnd;
-
-    private static final String CHOICE_MESSAGE = "Wybierz opcję: ";
-    private static final String CONTINUE_MESSAGE = "Aby kontynuować wciśnij enter...";
-    private static final String WELCOME_MESSAGE = "Aplikacja do zarządzania firmą IT";
+    private Business business;
 
     public Controller() {
         isTheEnd = false;
         scanner = new Scanner(System.in);
         createMenus();
         currentMenu = mainMenu;
+        business = new Business(Constants.COMPANY_NAME, Constants.NIP, 0);
     }
 
     public void start() {
-        System.out.println(WELCOME_MESSAGE);
+        System.out.println(Constants.WELCOME_MESSAGE);
         System.out.println();
         while (!isTheEnd) {
             currentMenu.display();
-            System.out.print(CHOICE_MESSAGE);
+            System.out.print(Constants.CHOICE_MESSAGE);
             int choice = scanner.nextInt();
             scanner.nextLine();
             System.out.println();
@@ -158,7 +157,7 @@ public class Controller {
     }
 
     private void showContinueMessage() {
-        System.out.println(CONTINUE_MESSAGE);
+        System.out.println(Constants.CONTINUE_MESSAGE);
         scanner.nextLine();
     }
 
