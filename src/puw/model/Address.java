@@ -1,8 +1,9 @@
 package puw.model;
 
 import java.io.Serializable;
+import java.util.Scanner;
 
-public class Address implements Serializable {
+public class Address implements Serializable, ConsoleReader {
     private static final long serialVersionUID = 0;
     private String city;
     private String street;
@@ -44,6 +45,19 @@ public class Address implements Serializable {
 
     public String getAddress() {
         return ",adres pracownika: "+ street+" " +houseAndFlatNumber+ ", "+getZipCode()+ " "+city;
+    }
+
+    @Override
+    public void readFromConsole(Scanner scanner) {
+        System.out.println("Wprowadź adres:");
+        System.out.print("Ulica: ");
+        street = scanner.nextLine();
+        System.out.print("Numer domu/mieszkania: ");
+        houseAndFlatNumber = scanner.nextLine();
+        System.out.print("Kod pocztowy: ");
+        zipCode = scanner.nextLine();
+        System.out.print("Miasto: ");
+        city = scanner.nextLine();
     }
 }
 
