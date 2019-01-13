@@ -5,13 +5,13 @@ public class Employee extends Person {
     private double salary;
     private int experienceInYears;
     private ArrayList <String> noteList;
-    private Proffession proffession;
+    private Proffession profession;
 
-    public Employee(String name, String surname, String pesel, Address address, double salary, int experienceInYears, Proffession proffession ) {
+    public Employee(String name, String surname, String pesel, Address address, double salary, int experienceInYears, Proffession profession) {
         super(name, surname, pesel, address);
         this.salary = salary;
         this.experienceInYears = experienceInYears;
-        this.proffession = proffession;
+        this.profession = profession;
         noteList = new ArrayList<>();
     }
     public Employee ()
@@ -19,7 +19,7 @@ public class Employee extends Person {
         super();
         this.salary = 0;
         this.experienceInYears = 0;
-        this.proffession = null;
+        this.profession = null;
         noteList = new ArrayList<>();
     }
     public void addNote (String note)
@@ -36,7 +36,8 @@ public class Employee extends Person {
     }
 
     @Override
-    public String toString() { return getName()+ " "+ getSurname()+ ", Pesel: "+getPesel()+ getAddress()+" ,pensja: "+ salary+ " ,doświadczenie (w latach): "+experienceInYears+ " ,specjalizacja: "+proffession;
+    public String toString() {
+        return getName() + " " + getSurname() + ", Pesel: " + getPesel() + getAddress() + " ,pensja: " + salary + " ,doświadczenie (w latach): " + experienceInYears + " ,specjalizacja: " + profession;
     }
 
     public double getSalary() {
@@ -47,7 +48,7 @@ public class Employee extends Person {
         return experienceInYears;
     }
 
-    public Proffession getProffession() {
-        return proffession;
+    public Proffession getProfession() {
+        return profession;
     }
 }

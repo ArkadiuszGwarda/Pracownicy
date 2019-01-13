@@ -10,6 +10,13 @@ public class Person implements Serializable
     private String pesel;
     private Address address;
 
+    public Person() {
+        name = "unknown";
+        surname = "unkown";
+        pesel = "0000000000000";
+        address = new Address();
+    }
+
     public Person (String name, String surname, String pesel, Address address)
     {
         this.name = name;
@@ -33,9 +40,8 @@ public class Person implements Serializable
         return pesel;
     }
 
-    public String getAddress() {
-        return address.getAddress();
+    public Address getAddress() {
+        return address;
     }
-
 }
 

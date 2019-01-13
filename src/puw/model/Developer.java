@@ -21,7 +21,7 @@ public class Developer extends Employee {
         return "Deweloper: " + getName() + " " + getSurname() +
                 ", Pesel: " + getPesel() + getAddress() +
                  " ,pensja: " + getSalary() + " ,doświadczenie (w latach): " + getExperienceInYears() +
-                " ,specjalizacja: " + getProffession()+", opanowany język/języki i jego/ich poziom: "+getSkills();
+                " ,specjalizacja: " + getProfession() + ", opanowany język/języki i jego/ich poziom: " + getSkills();
     }
     public void addSkills(DeveloperSkill developerSkill, SkillLevel skillLevel)
     {
