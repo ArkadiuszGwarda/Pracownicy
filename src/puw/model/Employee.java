@@ -1,11 +1,12 @@
 package puw.model;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Employee extends Person {
     private double salary;
     private int experienceInYears;
-    private ArrayList <String> noteList;
+    private ArrayList<String> noteList;
     private Proffession profession;
 
     public Employee(String name, String surname, String pesel, Address address, double salary, int experienceInYears, Proffession profession) {
@@ -15,25 +16,30 @@ public class Employee extends Person {
         this.profession = profession;
         noteList = new ArrayList<>();
     }
-    public Employee ()
-    {
+
+    public Employee() {
         super();
         this.salary = 0;
         this.experienceInYears = 0;
         this.profession = Proffession.DEVELOPER;
         noteList = new ArrayList<>();
     }
-    public void addNote (String note)
-    {
+
+    public Employee(Proffession profession) {
+        this();
+        this.profession = profession;
+    }
+
+    public void addNote(String note) {
         noteList.add(note);
     }
-    public void showNotes ()
-    {
+
+    public void showNotes() {
         System.out.println(noteList);
     }
-    public void raiseSalary (double bonus)
-    {
-        salary+=bonus;
+
+    public void raiseSalary(double bonus) {
+        salary += bonus;
     }
 
     @Override

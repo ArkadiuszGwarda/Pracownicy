@@ -13,7 +13,7 @@ public class Developer extends Employee {
     }
 
     public Developer() {
-        super();
+        super(Proffession.DEVELOPER);
         skills = new HashMap<>();
     }
 
