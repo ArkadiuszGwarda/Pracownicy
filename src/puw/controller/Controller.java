@@ -1,6 +1,9 @@
 package puw.controller;
 
 import puw.model.Business;
+import puw.model.Developer;
+import puw.model.Employee;
+import puw.model.Proffession;
 import puw.view.Menu;
 import puw.view.MenuItem;
 
@@ -152,7 +155,21 @@ public class Controller {
     }
 
     private void hireNewEmployee() {
-        System.out.println("Do zaimplementowania");
+        for (int i = 0; i < Proffession.values().length; i++)
+            System.out.printf("%d. %s%n", i + 1, Proffession.values()[i]);
+        System.out.print("Stanowisko: ");
+        Employee employee;
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        switch (choice) {
+            case 5:
+                employee = new Developer();
+                break;
+            default:
+                employee = new Employee(Proffession.values()[--choice]);
+        }
+        employee.readFromConsole(scanner);
+        business.hireEmployee(employee);
         showContinueMessage();
     }
 

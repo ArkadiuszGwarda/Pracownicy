@@ -28,24 +28,14 @@ public class Business {
         return balance;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setNip(String nip) {
-        this.nip = nip;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void hireEmployee(Employee employee) {
+        if (employee != null) {
+            employees.add(employee);
+        }
     }
 
     public List<Employee> getEmployees() {
         return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
     }
 
     @Override
