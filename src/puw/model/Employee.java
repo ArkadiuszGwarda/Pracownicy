@@ -1,5 +1,6 @@
 package puw.model;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Employee extends Person {
     private double salary;
@@ -37,7 +38,19 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return getName() + " " + getSurname() + ", Pesel: " + getPesel() + getAddress() + " ,pensja: " + salary + " ,doświadczenie (w latach): " + experienceInYears + " ,specjalizacja: " + profession;
+        StringBuilder builder = new StringBuilder(super.toString()).append('\n')
+                .append("Stanowisko: ").append(profession).append('\n')
+                .append("Doświadczenie: ").append(experienceInYears).append(" ")
+                .append(experienceInYears > 1 ? "lat" : "rok").append('\n')
+                .append("Notatki: ");
+        if (noteList.isEmpty())
+            builder.append("brak");
+        else {
+            builder.append(noteList.size());
+            for (int i = 0; i < noteList.size(); i++)
+                builder.append("\n\t").append(i + 1).append(" ").append(noteList.get(i));
+        }
+        return builder.toString();
     }
 
     public double getSalary() {
@@ -50,5 +63,17 @@ public class Employee extends Person {
 
     public Proffession getProfession() {
         return profession;
+    }
+
+    @Override
+    public void readFromConsole(Scanner scanner) {
+        super.readFromConsole(scanner);
+        System.out.println("Podaj dane o pracowniku:");
+        System.out.print("Wynagrodzenie: ");
+        salary = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.print("Doświadczenie: ");
+        experienceInYears = scanner.nextInt();
+        scanner.nextLine();
     }
 }
