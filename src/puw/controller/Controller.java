@@ -3,7 +3,7 @@ package puw.controller;
 import puw.model.Business;
 import puw.model.Developer;
 import puw.model.Employee;
-import puw.model.Proffession;
+import puw.model.Profession;
 import puw.view.Menu;
 import puw.view.MenuItem;
 
@@ -155,8 +155,8 @@ public class Controller {
     }
 
     private void hireNewEmployee() {
-        for (int i = 0; i < Proffession.values().length; i++)
-            System.out.printf("%d. %s%n", i + 1, Proffession.values()[i]);
+        for (int i = 0; i < Profession.values().length; i++)
+            System.out.printf("%d. %s%n", i + 1, Profession.values()[i]);
         System.out.print("Stanowisko: ");
         Employee employee;
         int choice = scanner.nextInt();
@@ -166,7 +166,7 @@ public class Controller {
                 employee = new Developer();
                 break;
             default:
-                employee = new Employee(Proffession.values()[--choice]);
+                employee = new Employee(Profession.values()[--choice]);
         }
         employee.readFromConsole(scanner);
         business.hireEmployee(employee);

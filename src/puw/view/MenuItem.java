@@ -5,7 +5,7 @@ import puw.controller.Action;
 public class MenuItem {
     private Action action;
     private Menu subMenu;
-    private String name;
+    private Object name;
 
 
     private MenuItem(MenuItemBuilder builder) {
@@ -19,7 +19,7 @@ public class MenuItem {
     }
 
     public String getName() {
-        return name;
+        return name.toString();
     }
 
     public void doAction() {

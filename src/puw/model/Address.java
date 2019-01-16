@@ -42,10 +42,18 @@ public class Address implements Serializable, ConsoleReader {
         return zipCode;
     }
 
+    public String fullInfo() {
+        return new StringBuilder()
+                .append("Ulica: ").append(street).append('\n')
+                .append("Numer domu/mieszkania: ").append(houseAndFlatNumber).append('\n')
+                .append("Kod pocztowy: ").append(zipCode).append('\n')
+                .append("Miasto: ").append(city).append('\n')
+                .toString();
+    }
 
     @Override
     public String toString() {
-        return "Adres: " + street + " " + houseAndFlatNumber + " " + zipCode + " " + city;
+        return city;
     }
 
     @Override

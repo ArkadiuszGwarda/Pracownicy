@@ -7,19 +7,19 @@ import java.util.Scanner;
 public class Developer extends Employee {
     private Map<DeveloperSkill, SkillLevel> skills;
 
-    public Developer(String name, String surname, String pesel, Address address, double salary, int experienceInYears, Proffession proffession) {
-        super(name, surname, pesel, address, salary, experienceInYears, proffession);
+    public Developer(String name, String surname, String pesel, Address address, double salary, int experienceInYears, Profession profession) {
+        super(name, surname, pesel, address, salary, experienceInYears, profession);
         skills = new HashMap<>();
     }
 
     public Developer() {
-        super(Proffession.DEVELOPER);
+        super(Profession.DEVELOPER);
         skills = new HashMap<>();
     }
 
     @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder(super.toString()).append('\n')
+    public String fullInfo() {
+        StringBuilder builder = new StringBuilder(super.fullInfo()).append('\n')
                 .append("Znajomość technologii: ").append(skills.size());
         if (skills.size() > 0) {
             builder.append("\nTechnologia Poziom")
@@ -31,6 +31,11 @@ public class Developer extends Employee {
             }
         }
         return builder.toString();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 
     public void addSkills(DeveloperSkill developerSkill, SkillLevel skillLevel) {

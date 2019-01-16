@@ -1,20 +1,20 @@
 package puw.model;
 
-public enum Proffession {
+public enum Profession {
     ANALYST("Analityk"),
     SOFTWARE_ARCHITECT("Inżynier Oprogramowania"),
     MANAGER("Kierownik projektu"),
-    ACCONTANT("Księgowa"),
+    ACCOUNTANT("Księgowa"),
     DEVELOPER("Programista");
 
-    private String proffession;
+    private String profession;
 
-    Proffession(String proffession) {
-        this.proffession = proffession;
+    Profession(String profession) {
+        this.profession = profession;
     }
 
     @Override
     public String toString() {
-        return proffession;
+        return profession;
     }
 }

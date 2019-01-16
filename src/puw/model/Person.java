@@ -44,14 +44,18 @@ public class Person implements Serializable, ConsoleReader {
         return address;
     }
 
-    @Override
-    public String toString() {
+    public String fullInfo() {
         return new StringBuilder()
                 .append("Imię: ").append(name).append('\n')
                 .append("Nazwisko: ").append(surname).append('\n')
                 .append("Pesel: ").append(pesel).append('\n')
-                .append(address.toString())
+                .append(address.fullInfo())
                 .toString();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s, %s", name, surname, address);
     }
 
     @Override

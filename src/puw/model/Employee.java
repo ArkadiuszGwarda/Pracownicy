@@ -7,9 +7,9 @@ public class Employee extends Person {
     private double salary;
     private int experienceInYears;
     private ArrayList<String> noteList;
-    private Proffession profession;
+    private Profession profession;
 
-    public Employee(String name, String surname, String pesel, Address address, double salary, int experienceInYears, Proffession profession) {
+    public Employee(String name, String surname, String pesel, Address address, double salary, int experienceInYears, Profession profession) {
         super(name, surname, pesel, address);
         this.salary = salary;
         this.experienceInYears = experienceInYears;
@@ -21,11 +21,11 @@ public class Employee extends Person {
         super();
         this.salary = 0;
         this.experienceInYears = 0;
-        this.profession = Proffession.DEVELOPER;
+        this.profession = Profession.DEVELOPER;
         noteList = new ArrayList<>();
     }
 
-    public Employee(Proffession profession) {
+    public Employee(Profession profession) {
         this();
         this.profession = profession;
     }
@@ -43,8 +43,8 @@ public class Employee extends Person {
     }
 
     @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder(super.toString()).append('\n')
+    public String fullInfo() {
+        StringBuilder builder = new StringBuilder(super.fullInfo()).append('\n')
                 .append("Stanowisko: ").append(profession).append('\n')
                 .append("Doświadczenie: ").append(experienceInYears).append(" ")
                 .append(experienceInYears > 1 ? "lat" : "rok").append('\n')
@@ -59,6 +59,11 @@ public class Employee extends Person {
         return builder.toString();
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s, %s, %s", super.toString(), profession, salary);
+    }
+
     public double getSalary() {
         return salary;
     }
@@ -67,7 +72,7 @@ public class Employee extends Person {
         return experienceInYears;
     }
 
-    public Proffession getProfession() {
+    public Profession getProfession() {
         return profession;
     }
 
