@@ -5,7 +5,7 @@ public enum Proffession {
     SOFTWARE_ARCHITECT("Inżynier Oprogramowania"),
     MANAGER("Kierownik projektu"),
     ACCONTANT("Księgowa"),
-    SENIOR_DEVELOPER("Programista");
+    DEVELOPER("Programista");
 
     private String proffession;
 

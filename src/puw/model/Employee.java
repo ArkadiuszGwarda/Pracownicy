@@ -20,7 +20,7 @@ public class Employee extends Person {
         super();
         this.salary = 0;
         this.experienceInYears = 0;
-        this.profession = null;
+        this.profession = Proffession.DEVELOPER;
         noteList = new ArrayList<>();
     }
     public void addNote (String note)
