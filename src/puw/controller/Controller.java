@@ -294,6 +294,7 @@ public class Controller {
     private int chooseProfession() {
         for (int i = 0; i < Profession.values().length; i++)
             System.out.printf("%d. %s%n", i + 1, Profession.values()[i]);
+        System.out.println("6. Wstecz");
         System.out.print(Constants.CHOICE_MESSAGE + ": ");
         int choice = scanner.nextInt();
         scanner.nextLine();
