@@ -39,8 +39,8 @@ public class Employee extends Person {
         System.out.println(noteList);
     }
 
-    public void raiseSalary(double bonus) {
-        salary += bonus;
+    public void changeSalary(double bonus) {
+        salary = bonus;
     }
 
     @Override

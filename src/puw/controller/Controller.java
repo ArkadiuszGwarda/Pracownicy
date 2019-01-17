@@ -177,7 +177,12 @@ public class Controller {
     }
 
     private void changeEmployeeSalary() {
-        System.out.println("Do zaimplementowania");
+        Employee employee = chooseEmployeeFromListMenu(business.getEmployees());
+        if (employee != null) {
+            System.out.println("Nowa pensja: ");
+            employee.changeSalary(scanner.nextDouble());
+            scanner.nextLine();
+        }
         showContinueMessage();
     }
 
