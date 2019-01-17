@@ -30,9 +30,9 @@ public class MenuItem {
     public static class MenuItemBuilder {
         private Action action;
         private Menu subMenu;
-        private String name;
+        private Object name;
 
-        public MenuItemBuilder(String name) {
+        public MenuItemBuilder(Object name) {
             this.name = name;
             this.action = null;
             this.subMenu = null;

@@ -7,6 +7,7 @@ import puw.model.Profession;
 import puw.view.Menu;
 import puw.view.MenuItem;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Controller {
@@ -27,6 +28,11 @@ public class Controller {
         createMenus();
         currentMenu = mainMenu;
         business = new Business(Constants.COMPANY_NAME, Constants.NIP, 0);
+    }
+
+    public Controller(Business business) {
+        this();
+        this.business = business;
     }
 
     public void start() {
@@ -109,6 +115,26 @@ public class Controller {
                 .addAction(() -> currentMenu = mainMenu).build());
     }
 
+    private void showEmployeesListMenu(List<Employee> employeeList) {
+        Menu listMenu = new Menu();
+        Employee employee;
+        for (int i = 0; i < employeeList.size(); i++) {
+            employee = employeeList.get(i);
+            listMenu.addItem(new MenuItem.MenuItemBuilder(employee).build());
+        }
+        listMenu.addItem(new MenuItem.MenuItemBuilder("Wstecz").build());
+        listMenu.display();
+    }
+
+    private Employee chooseEmployeeFromListMenu(List<Employee> employeeList) {
+        showEmployeesListMenu(employeeList);
+        System.out.print(Constants.CHOICE_MESSAGE);
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println();
+        return employeeList.get(--choice);
+    }
+
     private void listAllVats() {
         System.out.println("Do zaimplementowania");
         showContinueMessage();
@@ -135,7 +161,9 @@ public class Controller {
     }
 
     private void listEmployees() {
-        System.out.println("Do zaimplementowania");
+        Employee employee = chooseEmployeeFromListMenu(business.getEmployees());
+        if (employee != null)
+            System.out.println(employee.fullInfo());
         showContinueMessage();
     }
 

@@ -47,7 +47,7 @@ public class Address implements Serializable, ConsoleReader {
                 .append("Ulica: ").append(street).append('\n')
                 .append("Numer domu/mieszkania: ").append(houseAndFlatNumber).append('\n')
                 .append("Kod pocztowy: ").append(zipCode).append('\n')
-                .append("Miasto: ").append(city).append('\n')
+                .append("Miasto: ").append(city)
                 .toString();
     }
 
