@@ -168,12 +168,16 @@ public class Controller {
         List<Employee> filteredList = business.getEmployees();
         switch (type) {
             case EXPERIENCE:
-                IntRange range = new IntRange();
-                range.chooseRange(scanner);
-                accept = employee -> employee.getExperienceInYears() >= range.getFrom()
-                        && employee.getExperienceInYears() <= range.getFrom();
+                IntRange intRange = new IntRange();
+                intRange.chooseRange(scanner);
+                accept = employee -> employee.getExperienceInYears() >= intRange.getFrom()
+                        && employee.getExperienceInYears() <= intRange.getTo();
                 break;
             case SALARY:
+                DoubleRange doubleRange = new DoubleRange();
+                doubleRange.chooseRange(scanner);
+                accept = employee -> employee.getSalary() >= doubleRange.getFrom()
+                        && employee.getSalary() <= doubleRange.getTo();
                 break;
             case SKILLS:
                 filteredList = filteredList.stream()
@@ -274,7 +278,7 @@ public class Controller {
 
     private int chooseSkill() {
         for (int i = 0; i < DeveloperSkill.values().length; i++)
-            System.out.printf("%d. %s%n", i + 1, Profession.values()[i]);
+            System.out.printf("%d. %s%n", i + 1, DeveloperSkill.values()[i]);
         System.out.print(Constants.CHOICE_MESSAGE + ": ");
         int choice = scanner.nextInt();
         scanner.nextLine();
