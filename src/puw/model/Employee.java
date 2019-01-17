@@ -48,8 +48,9 @@ public class Employee extends Person {
         StringBuilder builder = new StringBuilder(super.fullInfo()).append('\n')
                 .append("Stanowisko: ").append(profession).append('\n')
                 .append("Doświadczenie: ").append(experienceInYears).append(" ")
-                .append(experienceInYears > 1 ? "lat" : "rok").append('\n')
-                .append("Notatki: ");
+                .append(experienceInYears > 1 ? experienceInYears < 5 ? "lata" : "lat" : "rok")
+                .append('\n').append("Pensja: ").append(salary + " zł")
+                .append('\n').append("Notatki: ");
         if (noteList.isEmpty())
             builder.append("brak");
         else {
@@ -62,7 +63,8 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return String.format("%s, %s, %s", super.toString(), profession, salary);
+        return String.format("%s, %s, %szł, %d %s", super.toString(), profession, salary, experienceInYears,
+                experienceInYears > 1 ? experienceInYears < 5 ? "lata" : "lat" : "rok");
     }
 
     public double getSalary() {
