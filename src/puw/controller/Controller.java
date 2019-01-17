@@ -132,15 +132,17 @@ public class Controller {
     }
 
     private Employee chooseEmployeeFromListMenu(List<Employee> employeeList) {
-        showEmployeesListMenu(employeeList);
-        System.out.print(Constants.CHOICE_MESSAGE);
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println();
-        if (employeeList.size() >= choice)
-            return employeeList.get(--choice);
-        else
-            return null;
+        if (employeeList.size() > 0) {
+            showEmployeesListMenu(employeeList);
+            System.out.print(Constants.CHOICE_MESSAGE);
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println();
+            if (employeeList.size() >= choice)
+                return employeeList.get(--choice);
+            else
+                return null;
+        } else return null;
     }
 
     private void listAllVats(Object object) {
@@ -237,15 +239,19 @@ public class Controller {
                 break;
         }
 
-        filteredList.stream().filter(accept).collect(Collectors.toList());
+        filteredList = filteredList.stream().filter(accept)
+                .collect(Collectors.toList());
         listEmployees(filteredList);
     }
 
 
     private void listEmployees(List<Employee> employees) {
-        Employee employee = chooseEmployeeFromListMenu(employees);
-        if (employee != null)
-            System.out.println(employee.fullInfo());
+        if (employees.size() > 0) {
+            Employee employee = chooseEmployeeFromListMenu(employees);
+            if (employee != null)
+                System.out.println(employee.fullInfo());
+        } else
+            System.out.println("Żaden pracownik nie spełnia zadanych kryteriów!");
         showContinueMessage();
     }
 
