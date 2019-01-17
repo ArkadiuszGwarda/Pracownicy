@@ -182,7 +182,11 @@ public class Controller {
     }
 
     private void addNoteToEmployee() {
-        System.out.println("Do zaimplementowania");
+        Employee employee = chooseEmployeeFromListMenu(business.getEmployees());
+        if (employee != null) {
+            System.out.print("Notatka: ");
+            employee.addNote(scanner.nextLine());
+        }
         showContinueMessage();
     }
 
