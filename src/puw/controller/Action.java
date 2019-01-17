@@ -1,5 +1,5 @@
 package puw.controller;
 
 public interface Action {
-    void  doAction();
+    void doAction(Object object);
 }

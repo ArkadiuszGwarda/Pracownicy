@@ -23,7 +23,7 @@ public class MenuItem {
     }
 
     public void doAction() {
-        action.doAction();
+        action.doAction(this);
     }
 
 

@@ -48,10 +48,10 @@ public class Controller {
         while (!isTheEnd) {
             currentMenu.display();
             System.out.print(Constants.CHOICE_MESSAGE);
-            int choice = scanner.nextInt();
+            int choice = scanner.nextInt() - 1;
             scanner.nextLine();
             System.out.println();
-            currentMenu.getItem(--choice).doAction();
+            currentMenu.getItem(choice).doAction();
         }
     }
 
@@ -64,13 +64,13 @@ public class Controller {
         vatsMenu = new Menu();
 
         mainMenu.addItem(new MenuItem.MenuItemBuilder("Zarządzanie pracownikami")
-                .addSubMenu(manageMenu).addAction(() -> currentMenu = manageMenu).build());
+                .addSubMenu(manageMenu).addAction((o) -> currentMenu = manageMenu).build());
         mainMenu.addItem(new MenuItem.MenuItemBuilder("Lista pracowników")
-                .addSubMenu(listMenu).addAction(() -> currentMenu = listMenu).build());
+                .addSubMenu(listMenu).addAction((o) -> currentMenu = listMenu).build());
         mainMenu.addItem(new MenuItem.MenuItemBuilder("Projekty").addSubMenu(projectsMenu)
-                .addAction(() -> currentMenu = projectsMenu).build());
+                .addAction((o) -> currentMenu = projectsMenu).build());
         mainMenu.addItem(new MenuItem.MenuItemBuilder("Faktury").addSubMenu(vatsMenu)
-                .addAction(() -> currentMenu = vatsMenu).build());
+                .addAction((o) -> currentMenu = vatsMenu).build());
         mainMenu.addItem(new MenuItem.MenuItemBuilder("Zakończ program")
                 .addAction(this::closeApplication).build());
 
@@ -84,41 +84,41 @@ public class Controller {
         manageMenu.addItem(new MenuItem.MenuItemBuilder("Zmień pensję")
                 .addAction(this::changeEmployeeSalary).build());
         manageMenu.addItem(new MenuItem.MenuItemBuilder("Wstecz")
-                .addAction(() -> currentMenu = mainMenu).build());
+                .addAction((o) -> currentMenu = mainMenu).build());
 
         listMenu.addItem(new MenuItem.MenuItemBuilder("Kompletna")
                 .addAction(this::listEmployees).build());
         listMenu.addItem(new MenuItem.MenuItemBuilder("Filtruj").addSubMenu(filterMenu)
-                .addAction(() -> currentMenu = filterMenu).build());
+                .addAction((o) -> currentMenu = filterMenu).build());
         listMenu.addItem(new MenuItem.MenuItemBuilder("Wstecz")
-                .addAction(() -> currentMenu = mainMenu).build());
+                .addAction((o) -> currentMenu = mainMenu).build());
 
         filterMenu.addItem(new MenuItem.MenuItemBuilder("Zawód")
-                .addAction(() -> filterEmployeesBy(0)).build());
+                .addAction(this::filterEmployeesBy).build());
         filterMenu.addItem(new MenuItem.MenuItemBuilder("Pensja")
-                .addAction(() -> filterEmployeesBy(1)).build());
+                .addAction(this::filterEmployeesBy).build());
         filterMenu.addItem(new MenuItem.MenuItemBuilder("Doświadczenie")
-                .addAction(() -> filterEmployeesBy(2)).build());
+                .addAction(this::filterEmployeesBy).build());
         filterMenu.addItem(new MenuItem.MenuItemBuilder("Umiejętności programistów")
-                .addAction(() -> filterEmployeesBy(3)).build());
+                .addAction(this::filterEmployeesBy).build());
         filterMenu.addItem(new MenuItem.MenuItemBuilder("Wstecz")
-                .addAction(() -> currentMenu = listMenu).build());
+                .addAction((o) -> currentMenu = listMenu).build());
         filterMenu.addItem(new MenuItem.MenuItemBuilder("Menu główne")
-                .addAction(() -> currentMenu = mainMenu).build());
+                .addAction((o) -> currentMenu = mainMenu).build());
 
         projectsMenu.addItem(new MenuItem.MenuItemBuilder("Nowy")
                 .addAction(this::addNewProject).build());
         projectsMenu.addItem(new MenuItem.MenuItemBuilder("Lista")
                 .addAction(this::listAllProjects).build());
         projectsMenu.addItem(new MenuItem.MenuItemBuilder("Wstecz")
-                .addAction(() -> currentMenu = mainMenu).build());
+                .addAction((o) -> currentMenu = mainMenu).build());
 
         vatsMenu.addItem(new MenuItem.MenuItemBuilder("Wystaw")
                 .addAction(this::addNewVat).build());
         vatsMenu.addItem(new MenuItem.MenuItemBuilder("Lista")
                 .addAction(this::listAllVats).build());
         vatsMenu.addItem(new MenuItem.MenuItemBuilder("Wstecz")
-                .addAction(() -> currentMenu = mainMenu).build());
+                .addAction((o) -> currentMenu = mainMenu).build());
     }
 
     private void showEmployeesListMenu(List<Employee> employeeList) {
@@ -144,39 +144,39 @@ public class Controller {
             return null;
     }
 
-    private void listAllVats() {
+    private void listAllVats(Object object) {
         System.out.println("Do zaimplementowania");
         showContinueMessage();
     }
 
-    private void addNewVat() {
+    private void addNewVat(Object object) {
         System.out.println("Do zaimplementowania");
         showContinueMessage();
     }
 
-    private void listAllProjects() {
+    private void listAllProjects(Object object) {
         System.out.println("Do zaimplementowania");
         showContinueMessage();
     }
 
-    private void addNewProject() {
+    private void addNewProject(Object object) {
         System.out.println("Do zaimplementowania");
         showContinueMessage();
     }
 
-    private void filterEmployeesBy(int by) {
+    private void filterEmployeesBy(Object object) {
         System.out.println("Do zaimplementowania");
         showContinueMessage();
     }
 
-    private void listEmployees() {
+    private void listEmployees(Object object) {
         Employee employee = chooseEmployeeFromListMenu(business.getEmployees());
         if (employee != null)
             System.out.println(employee.fullInfo());
         showContinueMessage();
     }
 
-    private void changeEmployeeSalary() {
+    private void changeEmployeeSalary(Object object) {
         Employee employee = chooseEmployeeFromListMenu(business.getEmployees());
         if (employee != null) {
             System.out.println("Nowa pensja: ");
@@ -186,7 +186,7 @@ public class Controller {
         showContinueMessage();
     }
 
-    private void addNoteToEmployee() {
+    private void addNoteToEmployee(Object object) {
         Employee employee = chooseEmployeeFromListMenu(business.getEmployees());
         if (employee != null) {
             System.out.print("Notatka: ");
@@ -195,7 +195,7 @@ public class Controller {
         showContinueMessage();
     }
 
-    private void fireEmployee() {
+    private void fireEmployee(Object object) {
         Employee employee = chooseEmployeeFromListMenu(business.getEmployees());
         if (employee != null) {
             business.fireEmployee(employee);
@@ -203,7 +203,7 @@ public class Controller {
         showContinueMessage();
     }
 
-    private void hireNewEmployee() {
+    private void hireNewEmployee(Object object) {
         for (int i = 0; i < Profession.values().length; i++)
             System.out.printf("%d. %s%n", i + 1, Profession.values()[i]);
         System.out.print("Stanowisko: ");
@@ -227,7 +227,7 @@ public class Controller {
         scanner.nextLine();
     }
 
-    private void closeApplication() {
+    private void closeApplication(Object object) {
         System.out.print(Constants.EXIT_CONFIRMATION + " (t|n): ");
         char choice = scanner.nextLine().charAt(0);
         if (Character.toLowerCase(choice) == 't') {
