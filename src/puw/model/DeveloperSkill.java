@@ -4,9 +4,9 @@ public enum DeveloperSkill {
     JAVA("Java"),
     PYTHON("Python"),
     SQL("Sql"),
-    JavaScript("JavaScript"),
-    Mariadb("Mariadb"),
-    Ruby("Ruby on rails"),
+    JAVA_SCRIPT("JavaScript"),
+    MARIA_DB("Mariadb"),
+    RUBY("Ruby on rails"),
     C("C/C++");
 
     private String developerSkill;

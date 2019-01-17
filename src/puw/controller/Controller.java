@@ -1,16 +1,12 @@
 package puw.controller;
 
-import puw.model.Business;
-import puw.model.Developer;
-import puw.model.Employee;
-import puw.model.Profession;
+import puw.model.*;
 import puw.view.Menu;
 import puw.view.MenuItem;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
@@ -169,12 +165,47 @@ public class Controller {
 
     private void filterEmployeesBy(FilterType type) {
         Predicate<Employee> accept = employee -> false;
+        List<Employee> filteredList = business.getEmployees();
         switch (type) {
             case EXPERIENCE:
                 break;
             case SALARY:
                 break;
             case SKILLS:
+                filteredList = filteredList.stream()
+                        .filter(employee -> employee instanceof Developer)
+                        .collect(Collectors.toList());
+                int skill = chooseSkill();
+                switch (skill) {
+                    case 1:
+                        accept = employee -> ((Developer) employee).getSkills()
+                                .keySet().contains(DeveloperSkill.JAVA);
+                        break;
+                    case 2:
+                        accept = employee -> ((Developer) employee).getSkills()
+                                .keySet().contains(DeveloperSkill.PYTHON);
+                        break;
+                    case 3:
+                        accept = employee -> ((Developer) employee).getSkills()
+                                .keySet().contains(DeveloperSkill.SQL);
+                        break;
+                    case 4:
+                        accept = employee -> ((Developer) employee).getSkills()
+                                .keySet().contains(DeveloperSkill.JAVA_SCRIPT);
+                        break;
+                    case 5:
+                        accept = employee -> ((Developer) employee).getSkills()
+                                .keySet().contains(DeveloperSkill.MARIA_DB);
+                        break;
+                    case 6:
+                        accept = employee -> ((Developer) employee).getSkills()
+                                .keySet().contains(DeveloperSkill.RUBY);
+                        break;
+                    case 7:
+                        accept = employee -> ((Developer) employee).getSkills()
+                                .keySet().contains(DeveloperSkill.C);
+                        break;
+                }
                 break;
             case PROFESSION:
                 int profession = chooseProfession();
@@ -197,9 +228,8 @@ public class Controller {
                 }
                 break;
         }
-        List<Employee> filteredList = business.getEmployees()
-                .stream().filter(accept)
-                .collect(Collectors.toCollection(ArrayList::new));
+
+        filteredList.stream().filter(accept).collect(Collectors.toList());
         listEmployees(filteredList);
     }
 
@@ -238,10 +268,19 @@ public class Controller {
         showContinueMessage();
     }
 
+    private int chooseSkill() {
+        for (int i = 0; i < DeveloperSkill.values().length; i++)
+            System.out.printf("%d. %s%n", i + 1, Profession.values()[i]);
+        System.out.print(Constants.CHOICE_MESSAGE + ": ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        return choice;
+    }
+
     private int chooseProfession() {
         for (int i = 0; i < Profession.values().length; i++)
             System.out.printf("%d. %s%n", i + 1, Profession.values()[i]);
-        System.out.print("Stanowisko: ");
+        System.out.print(Constants.CHOICE_MESSAGE + ": ");
         int choice = scanner.nextInt();
         scanner.nextLine();
         return choice;
