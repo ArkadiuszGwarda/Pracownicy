@@ -8,6 +8,8 @@ import puw.view.Menu;
 import puw.view.MenuItem;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
 
@@ -38,6 +40,10 @@ public class Controller {
 
     public void start() {
         System.out.println(Constants.WELCOME_MESSAGE);
+        if (Files.exists(Path.of(Constants.FILE_NAME))) {
+            System.out.println("Wczytuję dane z pliku " + Constants.FILE_NAME);
+            readFromFile(new File(Constants.FILE_NAME));
+        }
         System.out.println();
         while (!isTheEnd) {
             currentMenu.display();
@@ -46,7 +52,6 @@ public class Controller {
             scanner.nextLine();
             System.out.println();
             currentMenu.getItem(--choice).doAction();
-
         }
     }
 
@@ -133,7 +138,10 @@ public class Controller {
         int choice = scanner.nextInt();
         scanner.nextLine();
         System.out.println();
-        return employeeList.get(--choice);
+        if (employeeList.size() >= choice)
+            return employeeList.get(--choice);
+        else
+            return null;
     }
 
     private void listAllVats() {
@@ -220,16 +228,19 @@ public class Controller {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file))) {
             outputStream.writeObject(business);
         } catch (IOException e) {
-            System.out.println("Błąd wejścia/wyjścia");
+            System.out.println("Błąd wejścia/wyjścia!");
         }
     }
 
     private void readFromFile(File file) {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(file))) {
+            business = (Business) inputStream.readObject();
         } catch (FileNotFoundException e) {
             System.out.println("Nie można odnaleźć pliku " + file.getAbsolutePath());
         } catch (IOException e) {
-            System.out.println("Błąd wejścia/wyjścia");
+            System.out.println("Błąd wejścia/wyjścia!");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Plik w nieznanym formacie!");
         }
     }
 }

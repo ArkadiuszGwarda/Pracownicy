@@ -21,6 +21,5 @@ public class ListEmployeesTest {
         business.hireEmployee(developer);
         Controller controller = new Controller(business);
         controller.start();
-
     }
 }
