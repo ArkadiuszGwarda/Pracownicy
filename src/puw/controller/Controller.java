@@ -168,6 +168,10 @@ public class Controller {
         List<Employee> filteredList = business.getEmployees();
         switch (type) {
             case EXPERIENCE:
+                IntRange range = new IntRange();
+                range.chooseRange(scanner);
+                accept = employee -> employee.getExperienceInYears() >= range.getFrom()
+                        && employee.getExperienceInYears() <= range.getFrom();
                 break;
             case SALARY:
                 break;
