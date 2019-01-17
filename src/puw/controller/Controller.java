@@ -232,6 +232,7 @@ public class Controller {
         char choice = scanner.nextLine().charAt(0);
         if (Character.toLowerCase(choice) == 't') {
             writeToFile(new File(Constants.FILE_NAME));
+            scanner.close();
             isTheEnd = true;
         }
     }
