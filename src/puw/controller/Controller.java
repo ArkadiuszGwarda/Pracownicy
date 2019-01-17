@@ -7,10 +7,7 @@ import puw.model.Profession;
 import puw.view.Menu;
 import puw.view.MenuItem;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -219,7 +216,16 @@ public class Controller {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file))) {
             outputStream.writeObject(business);
         } catch (IOException e) {
-            System.out.println("Nie mogę zapisać do pliku " + file.getAbsolutePath());
+            System.out.println("Błąd wejścia/wyjścia");
+        }
+    }
+
+    private void readFromFile(File file) {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(file))) {
+        } catch (FileNotFoundException e) {
+            System.out.println("Nie można odnaleźć pliku " + file.getAbsolutePath());
+        } catch (IOException e) {
+            System.out.println("Błąd wejścia/wyjścia");
         }
     }
 }
