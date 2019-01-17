@@ -10,8 +10,11 @@ import puw.view.MenuItem;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Controller {
     private Menu currentMenu;
@@ -87,20 +90,20 @@ public class Controller {
                 .addAction((o) -> currentMenu = mainMenu).build());
 
         listMenu.addItem(new MenuItem.MenuItemBuilder("Kompletna")
-                .addAction(this::listEmployees).build());
+                .addAction((o) -> listEmployees(business.getEmployees())).build());
         listMenu.addItem(new MenuItem.MenuItemBuilder("Filtruj").addSubMenu(filterMenu)
                 .addAction((o) -> currentMenu = filterMenu).build());
         listMenu.addItem(new MenuItem.MenuItemBuilder("Wstecz")
                 .addAction((o) -> currentMenu = mainMenu).build());
 
         filterMenu.addItem(new MenuItem.MenuItemBuilder("Zawód")
-                .addAction(this::filterEmployeesBy).build());
+                .addAction((o) -> filterEmployeesBy(FilterType.PROFESSION)).build());
         filterMenu.addItem(new MenuItem.MenuItemBuilder("Pensja")
-                .addAction(this::filterEmployeesBy).build());
+                .addAction((o) -> filterEmployeesBy(FilterType.SALARY)).build());
         filterMenu.addItem(new MenuItem.MenuItemBuilder("Doświadczenie")
-                .addAction(this::filterEmployeesBy).build());
+                .addAction((o) -> filterEmployeesBy(FilterType.EXPERIENCE)).build());
         filterMenu.addItem(new MenuItem.MenuItemBuilder("Umiejętności programistów")
-                .addAction(this::filterEmployeesBy).build());
+                .addAction((o) -> filterEmployeesBy(FilterType.SKILLS)).build());
         filterMenu.addItem(new MenuItem.MenuItemBuilder("Wstecz")
                 .addAction((o) -> currentMenu = listMenu).build());
         filterMenu.addItem(new MenuItem.MenuItemBuilder("Menu główne")
@@ -164,13 +167,45 @@ public class Controller {
         showContinueMessage();
     }
 
-    private void filterEmployeesBy(Object object) {
-        System.out.println("Do zaimplementowania");
-        showContinueMessage();
+    private void filterEmployeesBy(FilterType type) {
+        Predicate<Employee> accept = employee -> false;
+        switch (type) {
+            case EXPERIENCE:
+                break;
+            case SALARY:
+                break;
+            case SKILLS:
+                break;
+            case PROFESSION:
+                int profession = chooseProfession();
+                switch (profession) {
+                    case 1:
+                        accept = employee -> employee.getProfession() == Profession.ANALYST;
+                        break;
+                    case 2:
+                        accept = employee -> employee.getProfession() == Profession.SOFTWARE_ARCHITECT;
+                        break;
+                    case 3:
+                        accept = employee -> employee.getProfession() == Profession.MANAGER;
+                        break;
+                    case 4:
+                        accept = employee -> employee.getProfession() == Profession.ACCOUNTANT;
+                        break;
+                    case 5:
+                        accept = employee -> employee.getProfession() == Profession.DEVELOPER;
+                        break;
+                }
+                break;
+        }
+        List<Employee> filteredList = business.getEmployees()
+                .stream().filter(accept)
+                .collect(Collectors.toCollection(ArrayList::new));
+        listEmployees(filteredList);
     }
 
-    private void listEmployees(Object object) {
-        Employee employee = chooseEmployeeFromListMenu(business.getEmployees());
+
+    private void listEmployees(List<Employee> employees) {
+        Employee employee = chooseEmployeeFromListMenu(employees);
         if (employee != null)
             System.out.println(employee.fullInfo());
         showContinueMessage();
@@ -203,13 +238,18 @@ public class Controller {
         showContinueMessage();
     }
 
-    private void hireNewEmployee(Object object) {
+    private int chooseProfession() {
         for (int i = 0; i < Profession.values().length; i++)
             System.out.printf("%d. %s%n", i + 1, Profession.values()[i]);
         System.out.print("Stanowisko: ");
-        Employee employee;
         int choice = scanner.nextInt();
         scanner.nextLine();
+        return choice;
+    }
+
+    private void hireNewEmployee(Object object) {
+        int choice = chooseProfession();
+        Employee employee;
         switch (choice) {
             case 5:
                 employee = new Developer();

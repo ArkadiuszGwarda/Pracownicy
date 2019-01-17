@@ -18,8 +18,8 @@ public class MenuItem {
         return subMenu != null;
     }
 
-    public String getName() {
-        return name.toString();
+    public Object getName() {
+        return name;
     }
 
     public void doAction() {

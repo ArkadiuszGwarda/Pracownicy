@@ -1,7 +1,7 @@
 package puw.view;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Menu {
     private Menu parentMenu;
