@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 public class Person implements Serializable, ConsoleReader {
-    private static final long serialVersionUID = 0;
+    private static final long serialVersionUID = -449147914124602859L;
     private String name;
     private String surname;
     private String pesel;

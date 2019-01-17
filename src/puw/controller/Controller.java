@@ -7,6 +7,10 @@ import puw.model.Profession;
 import puw.view.Menu;
 import puw.view.MenuItem;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Scanner;
 
@@ -209,5 +213,13 @@ public class Controller {
     private void closeApplication() {
         System.out.println("Do zaimplementowania");
         isTheEnd = true;
+    }
+
+    private void writeToFile(File file) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file))) {
+            outputStream.writeObject(business);
+        } catch (IOException e) {
+            System.out.println("Nie mogę zapisać do pliku " + file.getAbsolutePath());
+        }
     }
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 public class Address implements Serializable, ConsoleReader {
-    private static final long serialVersionUID = 0;
+    private static final long serialVersionUID = -334226053089611966L;
     private String city;
     private String street;
     private String houseAndFlatNumber;

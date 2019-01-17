@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Employee extends Person {
+    private static final long serialVersionUID = 2460551131052949601L;
     private double salary;
     private int experienceInYears;
     private ArrayList<String> noteList;

@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Developer extends Employee {
+    private static final long serialVersionUID = 7712559785710012176L;
     private Map<DeveloperSkill, SkillLevel> skills;
 
     public Developer(String name, String surname, String pesel, Address address, double salary, int experienceInYears, Profession profession) {

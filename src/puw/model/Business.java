@@ -1,9 +1,12 @@
 package puw.model;
 
+import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Business {
+public class Business implements Serializable {
+    private static final long serialVersionUID = 6698304553771718837L;
     private String name;
     private String nip;
     private double balance;
@@ -46,5 +49,9 @@ public class Business {
                 ", balance=" + balance +
                 ", employees=" + employees +
                 '}';
+    }
+
+    public void writeToJson(File file) {
+
     }
 }
