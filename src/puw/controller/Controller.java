@@ -191,7 +191,10 @@ public class Controller {
     }
 
     private void fireEmployee() {
-        System.out.println("Do zaimplementowania");
+        Employee employee = chooseEmployeeFromListMenu(business.getEmployees());
+        if (employee != null) {
+            business.fireEmployee(employee);
+        }
         showContinueMessage();
     }
 

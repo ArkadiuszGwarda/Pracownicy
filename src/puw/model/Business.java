@@ -37,6 +37,12 @@ public class Business implements Serializable {
         }
     }
 
+    public void fireEmployee(Employee employee) {
+        if (employee != null) {
+            employees.remove(employee);
+        }
+    }
+
     public List<Employee> getEmployees() {
         return employees;
     }
