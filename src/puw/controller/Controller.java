@@ -208,8 +208,12 @@ public class Controller {
     }
 
     private void closeApplication() {
-        System.out.println("Do zaimplementowania");
-        isTheEnd = true;
+        System.out.print(Constants.EXIT_CONFIRMATION + " (t|n): ");
+        char choice = scanner.nextLine().charAt(0);
+        if (Character.toLowerCase(choice) == 't') {
+            writeToFile(new File(Constants.FILE_NAME));
+            isTheEnd = true;
+        }
     }
 
     private void writeToFile(File file) {
