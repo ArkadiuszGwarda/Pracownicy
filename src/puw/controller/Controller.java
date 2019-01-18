@@ -7,6 +7,7 @@ import puw.view.MenuItem;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
@@ -39,7 +40,7 @@ public class Controller {
 
     public void start() {
         System.out.println(Constants.WELCOME_MESSAGE);
-        if (Files.exists(Path.of(Constants.FILE_NAME))) {
+        if (Files.exists(Paths.get(Constants.FILE_NAME))) {
             System.out.println("Wczytuję dane z pliku " + Constants.FILE_NAME);
             readFromFile(new File(Constants.FILE_NAME));
         }
